@@ -41,7 +41,7 @@ export default function AddTraining(props) {
   }
   return (
     <div>
-      <IconButton color='inherit' onClick={handleClickOpen}>
+      <IconButton color='inherit' size="small" onClick={handleClickOpen}>
         <AddCircleOutlineIcon />
         Add training
       </IconButton>

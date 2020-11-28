@@ -8,6 +8,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import AddCustomer from './AddCustomer';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AddTraining from './AddTraining';
+import EditCustomer from './EditCustomer';
+
 
 
 
@@ -55,6 +57,18 @@ export default function CustomerList() {
     }
 }
 
+    const editCustomer = (url, customer) => {
+        fetch (url, {
+            method: 'PUT',
+            headers: {'Content-type' : 'application/json'},
+            body: JSON.stringify(customer)
+        })
+        .then(_ => gridRef.current.refreshCells({rowNodes : getCustomers()}))
+        .then(_ => setMsg('Customer was edited succesfully'))
+        .then(_ => setOpen(true))
+        .catch(err => console.error(err))
+    }
+
     const addTraining = (newTraining) => {
         fetch("https://customerrest.herokuapp.com/api/trainings/", {
             method: 'POST',
@@ -71,15 +85,15 @@ export default function CustomerList() {
 
 
     const columns = [
-        { headerName: 'Firstname', field: 'firstname', sortable: true, filter: true},
-        { headerName: 'Lastname', field: 'lastname', sortable: true, filter: true},
-        { headerName: 'Streetaddress', field: 'streetaddress', sortable: true, filter: true},
-        { headerName: 'Postcode', field: 'postcode', sortable: true, filter: true},
-        { headerName: 'City', field: 'city', sortable: true, filter: true},
-        { headerName: 'Email', field: 'email', sortable: true, filter: true},
-        { headerName: 'Phone', field: 'phone', sortable: true, filter: true},
+        
         {
-            headerName: '',
+            headerName:'Edit',
+            field: 'links[0].herf',
+            width: 90,
+            cellRendererFramework: params => <EditCustomer editCustomer={editCustomer} params={params} />
+        },
+        {
+            headerName: 'Delete',
             field: 'links[0].href',
             width: 90,
             cellRendererFramework: params => 
@@ -88,19 +102,27 @@ export default function CustomerList() {
           </IconButton>
         },
         {
-            headerName: '',
+            headerName: 'Add',
             field: 'links[0].href',
             cellRendererFramework: params => <AddTraining addTraining={addTraining} params={params} link={params.data.links[0].href} />
           
            
-        }
+        },
+        { headerName: 'Firstname', field: 'firstname', sortable: true, filter: true},
+        { headerName: 'Lastname', field: 'lastname', sortable: true, filter: true},
+        { headerName: 'Streetaddress', field: 'streetaddress', sortable: true, filter: true},
+        { headerName: 'Postcode', field: 'postcode', sortable: true, filter: true},
+        { headerName: 'City', field: 'city', sortable: true, filter: true},
+        { headerName: 'Email', field: 'email', sortable: true, filter: true},
+        { headerName: 'Phone', field: 'phone', sortable: true, filter: true},
+  
 
     ]
 
     return (
         <div>
         <AddCustomer addCusto={addCusto} />
-        <div className="ag-theme-material" style={{height: '500px', width: '100%', margin: 'auto' }}>
+        <div className="ag-theme-material" style={{height: '500px', width: '90%', margin: 'auto' }}>
             <AgGridReact
             suppressCellSelection={true}
             ref={gridRef}
