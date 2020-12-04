@@ -8,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Snackbar from '@material-ui/core/Snackbar';
 
 
-export default function TrainingList() {
+export default function TrainingList(props) {
 
     const [trainings, setTrainings] = useState([]);
     const [open, setOpen] = useState(false);

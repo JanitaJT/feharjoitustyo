@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@devexpress/dx-react-core": "^2.7.3",
+    "@devexpress/dx-react-scheduler": "^2.7.3",
+    "@devexpress/dx-react-scheduler-material-ui": "^2.7.3",
+    "@fullcalendar/core": "^5.4.0",
+    "@fullcalendar/daygrid": "^5.4.0",
+    "@fullcalendar/react": "^5.4.0",
+    "@fullcalendar/timegrid": "^5.4.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^5.11.4",

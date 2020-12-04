@@ -5,6 +5,8 @@ import Tab from '@material-ui/core/Tab';
 import CustomerList from './CustomerList';
 import TrainingList from './TrainingList';
 
+import ScheCale from './ScheCale';
+
 export default function Tabapp(props) {
     const [value, setValue] = useState('one');
     const handleChange = (event, value) => {
@@ -16,10 +18,12 @@ export default function Tabapp(props) {
         <Tabs value={value} onChange={handleChange}>
             <Tab value="one" label="Customers" />
             <Tab value="two" label="Trainings" />
+            <Tab value= "three" label="Calendar" />
         </Tabs>
     </AppBar>
     {value === "one" && <CustomerList/>}
     {value === "two" && <TrainingList />}
+    {value === "three" && <ScheCale />}
         </div>
     )
 }
